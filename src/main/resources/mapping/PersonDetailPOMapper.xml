@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haiqiu.datamanager.dao.PersonDetailPOMapper">
+  <resultMap id="BaseResultMap" type="com.haiqiu.datamanager.poentity.PersonDetailPO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="shoesize" jdbcType="INTEGER" property="shoesize" />
+    <result column="preferred_side" jdbcType="VARCHAR" property="preferredSide" />
+    <result column="birth_place" jdbcType="VARCHAR" property="birthPlace" />
+    <result column="birth_country_id" jdbcType="INTEGER" property="birthCountryId" />
+    <result column="position_1" jdbcType="VARCHAR" property="position1" />
+    <result column="position_2" jdbcType="VARCHAR" property="position2" />
+    <result column="died" jdbcType="VARCHAR" property="died" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, shoesize, preferred_side, birth_place, birth_country_id, position_1, position_2,
+    died
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from person_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from person_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.haiqiu.datamanager.poentity.PersonDetailPO">
+    insert into person_detail (id, shoesize, preferred_side,
+      birth_place, birth_country_id, position_1,
+      position_2, died)
+    values (#{id,jdbcType=INTEGER}, #{shoesize,jdbcType=INTEGER}, #{preferredSide,jdbcType=VARCHAR},
+      #{birthPlace,jdbcType=VARCHAR}, #{birthCountryId,jdbcType=INTEGER}, #{position1,jdbcType=VARCHAR},
+      #{position2,jdbcType=VARCHAR}, #{died,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haiqiu.datamanager.poentity.PersonDetailPO">
+    insert into person_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="shoesize != null">
+        shoesize,
+      </if>
+      <if test="preferredSide != null">
+        preferred_side,
+      </if>
+      <if test="birthPlace != null">
+        birth_place,
+      </if>
+      <if test="birthCountryId != null">
+        birth_country_id,
+      </if>
+      <if test="position1 != null">
+        position_1,
+      </if>
+      <if test="position2 != null">
+        position_2,
+      </if>
+      <if test="died != null">
+        died,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shoesize != null">
+        #{shoesize,jdbcType=INTEGER},
+      </if>
+      <if test="preferredSide != null">
+        #{preferredSide,jdbcType=VARCHAR},
+      </if>
+      <if test="birthPlace != null">
+        #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="birthCountryId != null">
+        #{birthCountryId,jdbcType=INTEGER},
+      </if>
+      <if test="position1 != null">
+        #{position1,jdbcType=VARCHAR},
+      </if>
+      <if test="position2 != null">
+        #{position2,jdbcType=VARCHAR},
+      </if>
+      <if test="died != null">
+        #{died,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haiqiu.datamanager.poentity.PersonDetailPO">
+    update person_detail
+    <set>
+      <if test="shoesize != null">
+        shoesize = #{shoesize,jdbcType=INTEGER},
+      </if>
+      <if test="preferredSide != null">
+        preferred_side = #{preferredSide,jdbcType=VARCHAR},
+      </if>
+      <if test="birthPlace != null">
+        birth_place = #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="birthCountryId != null">
+        birth_country_id = #{birthCountryId,jdbcType=INTEGER},
+      </if>
+      <if test="position1 != null">
+        position_1 = #{position1,jdbcType=VARCHAR},
+      </if>
+      <if test="position2 != null">
+        position_2 = #{position2,jdbcType=VARCHAR},
+      </if>
+      <if test="died != null">
+        died = #{died,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haiqiu.datamanager.poentity.PersonDetailPO">
+    update person_detail
+    set shoesize = #{shoesize,jdbcType=INTEGER},
+      preferred_side = #{preferredSide,jdbcType=VARCHAR},
+      birth_place = #{birthPlace,jdbcType=VARCHAR},
+      birth_country_id = #{birthCountryId,jdbcType=INTEGER},
+      position_1 = #{position1,jdbcType=VARCHAR},
+      position_2 = #{position2,jdbcType=VARCHAR},
+      died = #{died,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
